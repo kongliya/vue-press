@@ -34,6 +34,4 @@ module.exports = {
     markdown: {
       lineNumbers: true
     },
-    serviceWorker: true,
-    base: '/', // 这就是默认，所以可以不用设置;
   }
