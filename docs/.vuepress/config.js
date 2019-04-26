@@ -1,6 +1,9 @@
 module.exports = {
-    title: 'Kkkkkl',
-    description: '心平气和',
+    title: 'One Person.',
+    description: 'One Person.',
+    head: [
+        ['link', { rel: 'icon', href: '/favicon.ico' }],
+    ],
     themeConfig: {
       nav: [
         { text: 'Vue', link: '/vue/' },
