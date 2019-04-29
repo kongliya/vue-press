@@ -35,6 +35,6 @@ module.exports = {
       }
     },
     markdown: {
-      lineNumbers: true
+      lineNumbers: true    // 代码块显示行号;
     },
   }
