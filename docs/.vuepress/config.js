@@ -6,11 +6,11 @@ module.exports = {
     ],
     themeConfig: {
       nav: [
-        { text: 'Vue', link: '/vue/' },
-        { text: 'React', link: '/react/' },
+        { text: 'Flutter', link: '/flutter/' },
+        { text: 'Node.js', link: '/nodejs/' },
         { text: 'JS', link: '/js/' },
         { text: 'CSS', link: '/css/' },
-        { text: '其他', link: '/other/' },
+        { text: '关于', link: '/about/' },
         { text: 'Github', link: 'https://github.com/kongliya' },
       ],
       sidebar: {
