@@ -1,10 +1,13 @@
 module.exports = {
+    theme: 'yubisaki',
     title: 'One Person.',
     description: 'One Person.',
     head: [
         ['link', { rel: 'icon', href: '/favicon.ico' }],
     ],
     themeConfig: {
+      // 背景图片;
+      background: '/img/path',
       nav: [
         { text: 'Flutter', link: '/flutter/' },
         { text: 'Node.js', link: '/nodejs/' },
@@ -14,13 +17,13 @@ module.exports = {
         { text: 'Github', link: 'https://github.com/kongliya' },
       ],
       sidebar: {
-        '/vue/': [
+        '/flutter/': [
           '',
-          'about'
+          'flutter'
         ],
-        '/react/': [
+        '/nodejs/': [
           '',
-          'react'
+          'nodejs'
         ],
         '/js/': [
           ''
@@ -28,7 +31,7 @@ module.exports = {
         '/css/': [
           ''
         ],
-        '/other/': [
+        '/about/': [
           '',
           'prettier'
         ]
