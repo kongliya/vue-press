@@ -9,4 +9,17 @@
 > > 3. vue-press github.io的库必须对应两个源 第二个库对应的远程（或者线上的仓库）是dist文件夹。
 > > 4. favicon刚开始设置的时候，可能会不显示，怎么刷新都没用，重启服务也没有用。正确的做法就是静置一天，第二天刷新自己就好了。
 >
-> 
+
+
+
+```bash
+
+git status
+
+git add .
+
+git commit -m'change'
+
+git push -f git@github.com:kongliya/kl.github.io.git master
+```
+

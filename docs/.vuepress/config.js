@@ -1,5 +1,4 @@
 module.exports = {
-    theme: 'yubisaki',
     title: 'One Person.',
     description: 'One Person.',
     head: [
@@ -33,7 +32,7 @@ module.exports = {
         ],
         '/about/': [
           '',
-          'prettier'
+          'http'
         ]
       }
     },
