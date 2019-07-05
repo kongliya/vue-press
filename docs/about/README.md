@@ -23,3 +23,8 @@ git commit -m'change'
 git push -f git@github.com:kongliya/kl.github.io.git master
 ```
 
+
+
+> 为了防止自己又忘了，blog再次长草，发布流程做以下记录：
+>
+> ![1562295207356](C:\Users\kl71611\AppData\Roaming\Typora\typora-user-images\1562295234547.png)
