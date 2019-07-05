@@ -12,7 +12,7 @@ module.exports = {
         { text: 'Node.js', link: '/nodejs/' },
         { text: 'JS', link: '/js/' },
         { text: 'CSS', link: '/css/' },
-        { text: '关于', link: '/about/' },
+        { text: 'Other', link: '/other/' },
         { text: 'Github', link: 'https://github.com/kongliya' },
       ],
       sidebar: {
@@ -22,7 +22,6 @@ module.exports = {
         ],
         '/nodejs/': [
           '',
-          'nodejs'
         ],
         '/js/': [
           ''
@@ -30,7 +29,7 @@ module.exports = {
         '/css/': [
           ''
         ],
-        '/about/': [
+        '/other/': [
           '',
           'http'
         ]

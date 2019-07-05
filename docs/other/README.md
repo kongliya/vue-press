@@ -1,4 +1,4 @@
-### 一些小东西
+# 一些小东西
 
 > 首先说说自己搭建vuepress踩到的一些坑吧。
 >
@@ -10,21 +10,17 @@
 > > 4. favicon刚开始设置的时候，可能会不显示，怎么刷新都没用，重启服务也没有用。正确的做法就是静置一天，第二天刷新自己就好了。
 >
 
-
-
-```bash
-
-git status
-
-git add .
-
-git commit -m'change'
-
-git push -f git@github.com:kongliya/kl.github.io.git master
-```
-
-
-
 > 为了防止自己又忘了，blog再次长草，发布流程做以下记录：
 >
-> ![1562295207356](C:\Users\kl71611\AppData\Roaming\Typora\typora-user-images\1562295234547.png)
+```
+vue-press 下 bash：
+git status
+git add .
+git commit -m'change'
+git push origin master
+git push -f git@github.com:kongliya/kl.github.io.git master
+
+进入docs/.vuepress/dist: 
+npm run deploy
+
+```
