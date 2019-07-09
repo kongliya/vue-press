@@ -31,7 +31,8 @@ module.exports = {
         ],
         '/other/': [
           '',
-          'http'
+          'http',
+          'vue',
         ]
       }
     },
