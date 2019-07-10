@@ -126,6 +126,73 @@ MVVM：
 
 ### 8. 路由？
 
-.......不想写了；哭唧唧...
+1. 什么是路由？ 
+    根据不同的url展示页面或者数据；
+    路由分前端路由和后端路由；前端路由多用于单页面开发(SPA)，并且前端路由是不涉及服务器的，是前端利用hash或者h5的historyAPI来实现的，一般用于不同内容的展示和切换；
+2. 路由跳转方式？
+    1. a标签跳转；
+    ```
+    <a href="#/home">首页</a>
+    ```
+    2. router-link跳转；
+    ```
+    <router-link to='/home'></router-link>
+    ```
+    3. 编程式路由；
+    ```
+    this.$router.push()
+    ```
+    此处说明下$route和$router区别（因为鄙人不才一直混）：当我们在vue之中打印this时会有$route和$router等相关信息；$route显示我们路由的配置与参数；而$router是路由的一个实例化对象，里边放的是方法
+3. 路由传值：
+    1. path路径传值；
+    ```
+    path:"/home/:id/name",
+    接收的时候通过 this.$route.params;
+    ```
+    2. query传值；
+    因为在url之中?后边的参数不会被解析，因此我们可以通过query传值，接收的时候通过this.$route.query;
+    3. 路由解耦；
+    在配置路由的时候添加props属性为true，在需要接受参数的组件页面通过props进行接受；
+    4. 编程式导航；
+    ```
+    this.$router.push({path:"/home",query:{}});
+    ```
+4. 路由配置项常用的属性以及作用；
+    路由配置参数：
+    path: 跳转路径；
+    component：路径相对于的组件；
+    name：命名路由；
+    children：子路由的配置参数（路由嵌套）；
+    props：路由解耦；
+    redirect：重定向路由；
+5. 如何检测路由参数的变化？
+    通过属性监听来实现或者beforeRouterUpdate();
+    ```
+    watch:{
+        "$router"(){
+
+        }
+    }
+    beforeRouterUpdate(to,from,next);
+    ```
+6. 路由守卫？
+    路由跳转前后做的一些验证；
+    路由常见的钩子函数：beforeRouteEnter、beforeRouteUpdate、beforeRouteLeave
+    beforeRouteEnter: 在渲染该组件的对应路由被confirm前调用，不能或者组件实例this（因为守卫执行前，组件实例还没被创建）；
+    beforeRouteUpdate：当前路由改变，但是该组件复用时调用，可以访问组件实例this；
+    beforeRouteLeave：导航离开该组件的对应路由时调用，可以访问组件实例this；（场景：用户没有支付离开时、用户填完信息没有保存时候等等）
+
+    全局守卫：router.beforeEach();
+    ```
+    const router = new VueRouter({.....})
+    router.beforeEach((to,from,next)=>{
+        .......
+    })
+    参数to：到哪里去；
+    参数from：从哪里来；
+    参数next：Fuction; 一定要调用该方法来resolve这个钩子；
+    ```
+    全局后置钩子：router.afterEach();
+    和守卫的区别是：这些钩子不会接受next函数也不会改变导航本身。
 
 ### 9. Vuex
