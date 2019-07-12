@@ -106,31 +106,34 @@ MVVM：
 
 ### 7. 老生常谈：生命周期。
 
-1. beforeCreate：初始化了事件和生命周期；
+1. beforeCreate：初始化了事件和生命周期；  
 
-2. created：可以访问到数据还是无法获取DOM元素；
+2. created：可以访问到数据还是无法获取DOM元素；  
 
-3. beforeMount：此时虚拟DOM已构建好但是没有放入页面（此时可以判断一下当前页面的数据和更新的数据是否一致，如果一致则可以不执行某些功能）；
+3. beforeMount：此时虚拟DOM已构建好但是没有放入页面（此时可以判断一下当前页面的数据和更新的数据是否一致，如果一致则可以不执行某些功能）；  
 
-4. mounted：此时虚拟DOM已放入页面，至此，初始化阶段全部结束。
+4. mounted：此时虚拟DOM已放入页面，至此，初始化阶段全部结束。  
 
-5. beforeUpdate：data被更新，触发update；
+5. beforeUpdate：data被更新，触发update；  
 
-6. updated：虚拟DOM被重新渲染；
+6. updated：虚拟DOM被重新渲染；  
 
-7. beforeDetroy：当检测到指令$destroy被调用时；
+7. beforeDetroy：当检测到指令$destroy被调用时；  
 
-8. destroyed：移除所有的子组件和事件监听。
+8. destroyed：移除所有的子组件和事件监听。  
 
    使用场景：一般来说，我们销毁组件以后，并不会关闭掉定时器，所以可以在该声明周期中手动关掉定时器。
 
 ### 8. 路由？
 
-1. 什么是路由？ 
-    根据不同的url展示页面或者数据；
-    路由分前端路由和后端路由；前端路由多用于单页面开发(SPA)，并且前端路由是不涉及服务器的，是前端利用hash或者h5的historyAPI来实现的，一般用于不同内容的展示和切换；
+1. 什么是路由？   
+    
+    根据不同的url展示页面或者数据；  
+    
+    路由分前端路由和后端路由；前端路由多用于单页面开发(SPA)，并且前端路由是不涉及服务器的，是前端利用hash或者h5的historyAPI来实现的，一般用于不同内容的展示和切换；  
+    
 2. 路由跳转方式？
-    1. a标签跳转；
+    1. a标签跳转；  
     ```
     <a href="#/home">首页</a>
     ```
@@ -140,47 +143,68 @@ MVVM：
     ```
     3. 编程式路由；
     ```
-    this.$router.push()
+    this.$router.push()  
     ```
-    此处说明下$route和$router区别（因为鄙人不才一直混）：当我们在vue之中打印this时会有$route和$router等相关信息；$route显示我们路由的配置与参数；而$router是路由的一个实例化对象，里边放的是方法
+    ​	此处说明下$route和$router区别（因为鄙人不才一直混）：当我们在vue之中打印this时会有$route和$router等相关信息；$route显示我们路由的配置与参数；而$router是路由的一个实例化对象，里边放的是方法
+
 3. 路由传值：
     1. path路径传值；
     ```
     path:"/home/:id/name",
     接收的时候通过 this.$route.params;
     ```
-    2. query传值；
-    因为在url之中?后边的参数不会被解析，因此我们可以通过query传值，接收的时候通过this.$route.query;
+    2. query传值；  
+
+      因为在url之中?后边的参数不会被解析，因此我们可以通过query传值，接收的时候通过this.$route.query;   
+
     3. 路由解耦；
-    在配置路由的时候添加props属性为true，在需要接受参数的组件页面通过props进行接受；
+      在配置路由的时候添加props属性为true，在需要接受参数的组件页面通过props进行接受；  
+
     4. 编程式导航；
     ```
     this.$router.push({path:"/home",query:{}});
     ```
-4. 路由配置项常用的属性以及作用；
-    路由配置参数：
-    path: 跳转路径；
-    component：路径相对于的组件；
-    name：命名路由；
-    children：子路由的配置参数（路由嵌套）；
-    props：路由解耦；
-    redirect：重定向路由；
-5. 如何检测路由参数的变化？
+
+4. 路由配置项常用的属性以及作用；  
+
+    路由配置参数：  
+
+    path: 跳转路径；  
+
+    component：路径相对于的组件；  
+
+    name：命名路由；  
+
+    children：子路由的配置参数（路由嵌套）；  
+
+    props：路由解耦；  
+
+    redirect：重定向路由；  
+
+5. 如何检测路由参数的变化？  
+
     通过属性监听来实现或者beforeRouterUpdate();
+
     ```
     watch:{
         "$router"(){
-
+    
         }
     }
     beforeRouterUpdate(to,from,next);
     ```
-6. 路由守卫？
-    路由跳转前后做的一些验证；
-    路由常见的钩子函数：beforeRouteEnter、beforeRouteUpdate、beforeRouteLeave
-    beforeRouteEnter: 在渲染该组件的对应路由被confirm前调用，不能或者组件实例this（因为守卫执行前，组件实例还没被创建）；
-    beforeRouteUpdate：当前路由改变，但是该组件复用时调用，可以访问组件实例this；
-    beforeRouteLeave：导航离开该组件的对应路由时调用，可以访问组件实例this；（场景：用户没有支付离开时、用户填完信息没有保存时候等等）
+
+6. 路由守卫？  
+
+    路由跳转前后做的一些验证；  
+
+    路由常见的钩子函数：beforeRouteEnter、beforeRouteUpdate、beforeRouteLeave  
+
+    beforeRouteEnter: 在渲染该组件的对应路由被confirm前调用，不能或者组件实例this（因为守卫执行前，组件实例还没被创建）；  
+
+    beforeRouteUpdate：当前路由改变，但是该组件复用时调用，可以访问组件实例this；  
+
+    beforeRouteLeave：导航离开该组件的对应路由时调用，可以访问组件实例this；（场景：用户没有支付离开时、用户填完信息没有保存时候等等）  
 
     全局守卫：router.beforeEach();
     ```
@@ -192,7 +216,59 @@ MVVM：
     参数from：从哪里来；
     参数next：Fuction; 一定要调用该方法来resolve这个钩子；
     ```
-    全局后置钩子：router.afterEach();
+    全局后置钩子：router.afterEach();  
+
     和守卫的区别是：这些钩子不会接受next函数也不会改变导航本身。
 
 ### 9. Vuex
+
+想放个图，就是很经典的那个图，一看就懂的那个 但是 路径问题怎么搞还是不知道，So.....先文字描述吧；  
+
+首先：Vuex是状态管理器；
+
+其次，为什么用？  
+
+===>  
+
+vue是单向数据流；
+
+1. 当我们处理大量数据时，传参的方法对于多层嵌套来说是非常繁琐的，而且兄弟间的状态传递是无能为力的；
+
+2. 我们经常会采用父子组件直接引用或者通过事件来变更和同步状态的多份拷贝；
+
+   而以上模式都非常脆弱，会造成无法维护的代码。
+
+   所以，我们将组件的共享状态拿出来以一个全局单例模式管理。
+
+再次，有哪些东西？
+
+1. state：数据源存放地，对应于一般vue对象里的data；存放公共的状态；
+2. getter：相当于计算属性，所以，getter的返回值会根据它的依赖被缓存起来，且只有当他的依赖值发生改变了才会被重新计算；
+3. mutation：只是用来修改数据的，数据的修改必须通过mutation；俩参数：state，params；
+4. action：大多数时候用来处理异步操作；
+5. module：有时候我们应用的所有状态可能会集中到一个比较大的对象。当应用复杂时，store会很臃肿，所以我们将store分割成模块，就像我们在文件夹之中建立子文件夹B一样，目的都是方便管理。
+
+数据传递过程：  
+
+当组件进行数据修改的时候我们需要调用Dispatch来触发actions里边的方法，actions里的每个方法都有一个commit方法，当方法执行的时候，通过commit来触发mutation里边的方法进行数据修改，mutation里都每个函数都有一个state参数，进行数据修改，数据修改完毕以后，会渲染到页面，页面的数据也会发生改变。
+
+### 10. axios和jquery的ajax区别？
+
+1. axios的优点：
+
+   从nodejs之中创建http请求；  
+
+   支持promiseAPI；  
+
+   提供了一些并发请求的接口；  
+
+   自动转换json数据；  
+
+   客户端支持防止CSRF/XSRF攻击；  
+
+2. ajax的缺点：
+
+   jquery一整个库因为单纯想用ajax就引入项目不合理；  
+
+   基于原生的XHR开发，但是 XHR 架构并不清晰；
+
