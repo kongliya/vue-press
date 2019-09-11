@@ -33,6 +33,7 @@ module.exports = {
           '',
           'http',
           'vue',
+          'webrtc',
         ]
       }
     },

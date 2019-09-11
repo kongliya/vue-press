@@ -1,6 +1,3 @@
----
-typora-root-url: ..\.vuepress\public\img
----
 
 # Vue面试题总结
 
@@ -52,7 +49,7 @@ vue：适合入门，但是也有一些高级的东西在里边。
 
 MVC:
 
-![MVC-阮一峰](/MVC-阮一峰.png)
+![MVC-阮一峰](./img/MVC.png)
 
  1. view传送指令到 controller
 
@@ -64,7 +61,7 @@ MVC:
 
 MVP:
 
-![MVP-阮一峰](/MVP-阮一峰.png)
+![MVP-阮一峰](./img/MVP.png)
 
 1. 各部分之间的通信都是双向的；
 2. view和model层不发生联系，都通过Presenter传递（好比相亲，男女不见面，都通过媒婆传递）；
@@ -72,7 +69,7 @@ MVP:
 
 MVVM：
 
-![MVVM-阮一峰](/MVVM-阮一峰.png)
+![MVVM-阮一峰](./img/MVVM.png)
 
 1. 双向数据绑定；
 2. 单线双箭头：表示一个数据发生改变，那么另一个数据无条件进行改变；
