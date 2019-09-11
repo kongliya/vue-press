@@ -29,3 +29,24 @@ git push -f git@github.com:kongliya/kl.github.io.git master
 npm run deploy
 
 ```
+
+因为本人换了台电脑，所以done下来以后再发布的时候碰到了某些问题记录：
+首先：ssh需要重新生成并且添加
+```
+ls -al ~/.ssh
+ssh-keygen -t rsa -C 'kongliya'
+cat ~/.ssh/id_rsa.pub
+git push -f git@github.com:kongliya/kl.github.io.git master
+```
+
+重新push即可。
+push成功后，执行如下：
+```
+npm run docs:build
+```
+
+重新编译，编译完成后生成dist文件夹，进入
+```
+npm run deploy
+```
+重新发布即可。
