@@ -25,7 +25,8 @@ git commit -m'change'
 git push origin master
 git push -f git@github.com:kongliya/kl.github.io.git master
 
-进入docs/.vuepress/dist: 
+进入docs/.vuepress/dist:
+（此时如果没有dist文件夹，执行npm run docs:build即可） 
 npm run deploy
 
 ```
