@@ -269,3 +269,9 @@ vue是单向数据流；
 
    基于原生的XHR开发，但是 XHR 架构并不清晰；
 
+## 11. methods、computed、watch区别
+
+methods是个方法 执行的时候需要事件进行  
+computed是一个计算属性，是实时响应的，只要data中属性发生了变化那么就会触发computed，计算属性也是基于属性的依赖进行缓存。methods调用的时候加 () , 而computed调用的时候是不需要加()  
+watch属性监听，watch用来监听属性的变化，当值发生变化的时候来执行特定的函数，watch监听属性的时候会有两个参数 newVal和oldVal一个新值一个旧值；  
+
