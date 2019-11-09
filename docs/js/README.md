@@ -197,3 +197,53 @@ https 是 http 的加密版本 是在http的基础上 采用ssl进行加密传�
 用途： 加密数据，反劫持，SEO  
 如何开启： 生成私钥与证书，配置nginx，重启nginx看效果；  
 
+## 17. 数组去重
+
+1. 方法一：利用indexOf();  
+![indexOf去重](./img/indexOf.png)
+
+2. 方法二：利用对象;  
+![obj去重](./img/obj1.png)  
+![obj去重](./img/obj2.png)  
+打印结果如下：相同的值被覆盖  
+![obj去重](./img/obj3.png)  
+![obj去重](./img/obj4.png)  
+![obj去重](./img/obj5.png)  
+
+3. 方法三：一句话去重;  
+![set去重](./img/set.png)  
+
+# 动态获取浏览器宽高；
+```
+mounted() {
+	// 动态获取浏览器宽;
+	window.onresize = () => {
+		return (() => {
+			this.clientWidth = document.body.clientWidth;
+			this.computedScreenWidth();
+		})();
+	};
+},
+computedScreenWidth() {
+	if (this.clientWidth < 1280) {
+		this.clientWidth = 1280;
+	}
+	// 会中布局16:9;
+	this.clientLeftWidth = this.clientWidth * (16 / 21.4);
+	this.clientLeftHeight = (9 * this.clientLeftWidth) / 16;
+	this.clientRightHeight = this.clientLeftHeight / 3;
+	this.clientRightWidth = this.clientRightHeight * (16 / 9);
+},
+```
+
+# vue之中DOM渲染完成后操作DOM；
+```
+	// DOM渲染完成后拿到要操作的DOM;
+	this.$nextTick(() => {
+		var lastVideoElementNum = document.getElementsByClassName('h26').length;
+		if (lastVideoElementNum > 0) {
+		var lastVideoElement = document.getElementsByClassName('h26')[lastVideoElementNum - 1];
+		lastVideoElement.style.borderBottom = '1px solid #fff';
+		}
+	})
+```
