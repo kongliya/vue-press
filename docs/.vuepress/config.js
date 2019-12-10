@@ -24,7 +24,8 @@ module.exports = {
           '',
         ],
         '/js/': [
-          ''
+          '',
+          'dailySummary',
         ],
         '/css/': [
           ''
@@ -34,6 +35,7 @@ module.exports = {
           'http',
           'vue',
           'webrtc',
+          'linux',
         ]
       }
     },
