@@ -1,4 +1,5 @@
-# 动态获取浏览器宽高；
+# 一些日常总结
+## 动态获取浏览器宽高；
 ```
 mounted() {
 	// 动态获取浏览器宽;
@@ -21,7 +22,7 @@ computedScreenWidth() {
 },
 ```
 
-# vue之中DOM渲染完成后操作DOM；
+## vue之中DOM渲染完成后操作DOM；
 ```
 	// DOM渲染完成后拿到要操作的DOM;
 	this.$nextTick(() => {
@@ -33,7 +34,7 @@ computedScreenWidth() {
 	})
 ```
 
-# 浏览器添加全局的提醒框；
+## 浏览器添加全局的提醒框；
 ```
 	if(window.Notification) {
 		var notification = new Notification('你有一条新信息', {
