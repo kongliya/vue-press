@@ -249,7 +249,7 @@ vue是单向数据流；
 
 当组件进行数据修改的时候我们需要调用Dispatch来触发actions里边的方法，actions里的每个方法都有一个commit方法，当方法执行的时候，通过commit来触发mutation里边的方法进行数据修改，mutation里都每个函数都有一个state参数，进行数据修改，数据修改完毕以后，会渲染到页面，页面的数据也会发生改变。
 
-## 10. axios和jquery的ajax区别？
+## 10. axios和ajax区别？
 
 1. axios的优点：
 
@@ -275,3 +275,52 @@ methods是个方法 执行的时候需要事件进行
 computed是一个计算属性，是实时响应的，只要data中属性发生了变化那么就会触发computed，计算属性也是基于属性的依赖进行缓存。methods调用的时候加 () , 而computed调用的时候是不需要加()  
 watch属性监听，watch用来监听属性的变化，当值发生变化的时候来执行特定的函数，watch监听属性的时候会有两个参数 newVal和oldVal一个新值一个旧值；  
 
+## 12. $set在vue里是如何实现的 做了什么？
+
+今天被问到了 而我不会 之前也没考虑到 为自己的不刨根问底深究惭愧三秒钟..
+好了 惭愧结束 开始做功课--
+
+Vue 双向数据绑定的原理是通过遍历data属性，利用Object.definePrototype将其转化成setter/getter,但是由于现代js的限制以及object.observe的限制，vue无法检测到对象属性的添加或删除。  
+这个时候 vue内部的实现如下：
+
+```
+export function set(target: Array<any> | Object, key: any, val: any): any { 
+ // target 为数组 
+ if (Array.isArray(target) && isValidArrayIndex(key)) {   
+  // 修改数组的长度, 避免索引>数组长度导致splice()执行有误   
+   target.length = Math.max(target.length, key);   
+  // 利用数组的splice变异方法触发响应式   
+  target.splice(key, 1, val);  
+   return val; 
+  } 
+  // target为对象, key在target或者target.prototype上 且必须不能在 Object.prototype 上,直接赋值 
+ 	if (key in target && !(key in Object.prototype)) {    
+ 	target[key] = val;   
+  	return val; 
+ }  
+ // 以上都不成立, 即开始给target创建一个全新的属性 
+  // 获取Observer实例 
+  const ob = (target: any).__ob__;  
+  // target 本身就不是响应式数据, 直接赋值 
+   if (!ob) {  
+     target[key] = val;  
+     return val;
+   }  
+   // 进行响应式处理
+     defineReactive(ob.value, key, val);
+     ob.dep.notify(); 
+      return val;
+  } 
+```
+- 如果目标是数组，使用vue实现的变异方法splice实现响应式
+- 如果目标是对象，判断属性存在，即为响应式，直接赋值
+- 如果target本身就不是响应式，直接赋值
+- 如果属性不是响应式，则调用defineReactive方法进行响应式处理   
+
+补充：defineReactive
+
+defineReactive() 就是用于定义响应式数据的核心函数。它主要做的事情包括：
+
+1.新建一个 dep 对象，与当前数据对应
+
+2.通过 Object.defineProperty() 重新定义对象属性，配置属性的 set、get，从而数据被获取、设置时可以执行 Vue 的代码
