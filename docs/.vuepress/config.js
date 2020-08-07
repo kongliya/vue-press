@@ -36,6 +36,7 @@ module.exports = {
           'vue',
           'webrtc',
           'linux',
+          'angular',
         ]
       }
     },
