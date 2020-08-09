@@ -1,3 +1,5 @@
+# flutter
+
 # flutter web端搭建环境启动第一个项目
  1. 首先第一步，需要下载flutter的sdk;
 
@@ -25,3 +27,7 @@
     ​	ANDROID_HOME:  值为sdk的目录（Android的童鞋） ==> 可以解决一直no device的报错。
 
  6. 接着flutter run 就可以（或者直接F5）===> vsCode
+
+
+- 为啥荒了呢 因为当时还不支持h5 我跑都跑不起来 现在发现 web端用的还是很少...  
+  但是至少 那段时间为了装环境是没少踩坑 嘤嘤嘤---

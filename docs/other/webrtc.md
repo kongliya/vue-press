@@ -3,7 +3,7 @@
 研究webrtc这一块也有一段时间了，  
 做一个总结吧。  
 
-### 是什么?
+## 是什么?
 
 Web的实时通信技术, 支持网页浏览器进行实时音视频对话的API, 而不需要安装插件。  
 Webrtc提供视频会议的核心技术, 包括音视频采集、编解码、网络传输、显示等功能, 而且也支持跨平台。  
@@ -21,9 +21,9 @@ webrtc官网地址: [webrtc官网(需要翻墙)](https://webrtc.org)
 2. 媒体协商：通信会话中的双方(例如两个浏览器)进行通信并就可接受的媒体会话达成一致的过程。  
 "提议/应答"就是一种媒体协商方式。
 
-### 怎么用?
+## 怎么用?
 
-#### 建立WebRTC会话
+### 建立WebRTC会话
 
    1. 获取本地媒体;  ==>  getUserMedia()
    2. 在浏览器和对等端(其他浏览器或者终端)之间建立连接;  ==>  RTCPeerConnection()  包含ICE"打洞"通过各种网络地址转换设备和防火墙时使用的信息;
@@ -32,18 +32,18 @@ webrtc官网地址: [webrtc官网(需要翻墙)](https://webrtc.org)
     
 ![建立WebRTC会话](./img/webrtc.png)
 
-### 本地媒体
+## 本地媒体
 
-#### WebRTC中的媒体
+### WebRTC中的媒体
 
 轨道：MediaStreamTrack 基本媒体单元 
 流：MediaStream 是 轨道：MediaStreamTrack对象的集合
 媒体选择和控制
    可约束的属性：枚举属性和范围属性;
 
-### 信令
+## 信令
 
-#### 作用
+### 作用
 
 1. 协商媒体功能和设置;
 2. 标识和验证会话参与者的身份;
@@ -52,7 +52,7 @@ webrtc官网地址: [webrtc官网(需要翻墙)](https://webrtc.org)
 
 目前是没有信令标准的，可自由选择。
 
-#### 媒体协商
+### 媒体协商
 
 信令最重要的功能在于，参与对等连接的两个浏览器之间交换会话描述协议(SDP)对象中包含的信息。  
 SDP之中包含供浏览器中RTP媒体栈配置媒体会话所需的全部信息，包括媒体类型(音频、视频、数据)、所用的编解码器(Opus、G.711等)、用于编解码器的各个参数或设置，以及有关带宽的信息。  
@@ -85,4 +85,47 @@ WebSocket传输允许浏览器开通一个与服务器的双向连接。此连�
 
 好处： 有助于缩短用户感知的建立连接所需的时间。 
 
+## SDK封装调试时碰到的问题记录
+
+### SDK之中添加进来adapter
+
+adapter是sdk的兼容插件，作用是为了兼容各个浏览器以更好的支持webrtc；  
+
+因为webrtc还没有出标准 所以各个浏览器之间就像是方言一般的存在 为了互通理解 所以需要添加进去adapter。  
+
+webrtc-adapter使用步骤：  
+
+[adapter介绍安装](https://www.javascriptcn.com/read-34969.html)
+
+webrtc-adapter解释：  
+
+[adapter介绍1](https://webrtc.org.cn/adapterjs-1/)  
+[adapter介绍1](https://webrtc.org.cn/adapterjs-2/)
+  
+### webrtc-internal中追溯某一个流的途径
+
+source ==> stream ==> track ==> sender/recevier
+
+### 调试工具
+
+chrome://webrtc-internals/  插件  
+
+![界面展示](./img/webrtc1.png)
+![一些参数说明](./img/webrtc2.png)
+
+### SRTP
+
+SRTP(SecureReal-time Transport Protocol) 安全实时传输协议，SRTP是在实时传输协议(Real-time Transport Protocol)基础上所定义的一个协议，旨在为单播和多播应用程序中的实时传输协议的数据提供加密、消息认证、完整性保证和重放保护安全实时传输协议。  
+
+协议格式：  
+
+![协议格式](./img/srtp1.png)
+![格式参数说明](./img/srtp2.png)
+
+### STUN/TURN
+
+1，STUN服务器是用来取外网地址的；  
+2，TURN服务器是在P2P失败时进行转发的；  
+
+每个TURN服务器都支持STUN，ICE处理负责的NAT设置，同时NAT打洞要求不止是一个公网IP和端口。  
 

@@ -8,7 +8,7 @@ module.exports = {
       // 背景图片;
       background: '/img/path',
       nav: [
-        { text: 'Flutter', link: '/flutter/' },
+        { text: 'HTTP', link: '/http/' },
         { text: 'Node.js', link: '/nodejs/' },
         { text: 'JS', link: '/js/' },
         { text: 'CSS', link: '/css/' },
@@ -16,9 +16,9 @@ module.exports = {
         { text: 'Github', link: 'https://github.com/kongliya' },
       ],
       sidebar: {
-        '/flutter/': [
+        '/http/': [
           '',
-          'flutter'
+          'http'
         ],
         '/nodejs/': [
           '',
@@ -37,6 +37,7 @@ module.exports = {
           'webrtc',
           'linux',
           'angular',
+          'flutter',
         ]
       }
     },
