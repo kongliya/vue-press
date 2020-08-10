@@ -4,8 +4,8 @@ heroImage: img/avatar.jpg
 actionText: Suprise →
 actionLink: /other/
 features:
-- title: Flutter
-  details: 尝鲜踩坑记。
+- title: HTTP
+  details: 好记性不如烂笔头。
 - title: Node.js
   details: 不懂后端的前端不是好开发。
 - title: JS
