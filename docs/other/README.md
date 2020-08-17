@@ -37,6 +37,8 @@ npm run deploy
 ls -al ~/.ssh
 ssh-keygen -t rsa -C 'kongliya'
 cat ~/.ssh/id_rsa.pub
+
+// 每天push -f发布前都需要先npm run docs:build 这样发布的才是最新的代码 ==。
 git push -f git@github.com:kongliya/kl.github.io.git master
 ```
 
