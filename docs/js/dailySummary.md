@@ -51,11 +51,11 @@ computedScreenWidth() {
 html: 
 <div class="normalName">
 	<p class="title">孕妇提醒</p>
-	<p class="con clip" id="tips">************。</p>
-	<p class="open open">
+	<p class="con clip" id="tips">假装这是一段很长需要折叠的代码。</p>
+	<p class="open">
 	<span>展开</span><img src="assets/img/open.png" alt="">
 	</p>
-	<p class="close close">
+	<p class="close">
 	<span>收起</span><img src="assets/img/close.png" alt="">
 	</p>
 </div>
@@ -78,7 +78,7 @@ css:
 }
 
 js: 
-// 功能主治;  判断行数是否需要显示展开按钮（为了适应不同手机的宽） 三行的高度是90;
+// 判断行数是否需要显示展开按钮（为了适应不同手机的宽） 三行的高度是90;
 // 如果考虑到resize也可以单独写在一个方法里，监听resize事件调用即可很简单不赘述;（但是移动端一般不会有resize事件）
 if ($("#tips").removeClass("clip").height() <= 90) {
 	$(".close").hide();
