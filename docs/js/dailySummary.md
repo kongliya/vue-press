@@ -103,6 +103,29 @@ if ($("#tips").removeClass("clip").height() <= 90) {
 思路：  
 判断是否需要动态添加.clip 即是否显示隐藏而出现三个点。如果行高大于90，我们则去显示展开按钮并且添加clip的class，点击展开则移除掉.clip正常显示，并显示收起按钮；若行高小于等于90，则我们展开收起按钮都无需显示。  
 
+## window.open父子传值：
+父页面：
+```
+<p><input type="text" name="test1" id="usr" value="******"/></p>
+<p><input type="text" name="test2" id="pwd" value="**********"/></p>
+<button onclick="openWindow()">打开子页面</button>
+
+function openWindow() {
+	window.open("./2.html",'newwindow', 'height=100, width=400, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, status=no')
+}
+```
+
+子页面：
+```
+<body>
+    父窗口带过来的用户名：<p id="son1"></p>
+    父窗口带过来的密码：<p id="son2"></p>
+</body>
+
+document.getElementById("son1").textContent = opener.document.getElementById("usr").value
+document.getElementById("son2").textContent = opener.document.getElementById("pwd").value
+```
+
 ## 不知道的js系列之上篇；  
 
 ### 1. 关于作用域：  
