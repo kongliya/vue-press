@@ -8,7 +8,7 @@ module.exports = {
       // 背景图片;
       background: '/img/path',
       nav: [
-        { text: 'HTTP', link: '/http/' },
+        { text: 'Vue 3.0', link: '/vue/' },
         { text: 'Node.js', link: '/nodejs/' },
         { text: 'JS', link: '/js/' },
         { text: 'CSS', link: '/css/' },
@@ -16,9 +16,10 @@ module.exports = {
         { text: 'Github', link: 'https://github.com/kongliya' },
       ],
       sidebar: {
-        '/http/': [
+        '/vue/': [
           '',
-          'http'
+          'vite',
+          'vue',
         ],
         '/nodejs/': [
           '',
