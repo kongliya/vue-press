@@ -152,7 +152,7 @@ document.getElementById("son2").textContent = opener.document.getElementById("pw
 - 模块之中，顶层的this返回undefined，不会指向window，所以顶层的this是无意义的（感觉是个闭包的亚子）；
 - 同一个模块若加载多次，只执行一次。
 ### 2. CommonJS：
-- 简称为CMJ，使用关键字为require() module export()...;
+- 简称为CJS，使用关键字为require() module export()...;
 - 导出的是一个值的拷贝，内部变化不影响引用的值；
 ### 3. 代码解释什么叫值的拷贝和引用：
 CommonJS 模块输出的是值的拷贝，也就是说，一旦输出一个值，模块内部的变化就影响不到这个值。请看下面这个模块文件lib.js的例子。
