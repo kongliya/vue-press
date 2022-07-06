@@ -361,7 +361,6 @@ if (typeof window.orientation !== 'undefined') {
 }
 ```
 注意，iPhone 的 Safari 浏览器不支持该属性。
-
 ### 四、touch 事件
 第四种方法是，手机浏览器的 DOM 元素可以通过ontouchstart属性，为touch事件指定监听函数。桌面设备没有这个属性。
 
@@ -404,8 +403,8 @@ let isMobile = window.matchMedia("(pointer:coarse)").matches;
 let isMobile = window.matchMedia("(any-pointer:coarse)").matches;
 ```
 上面示例中，any-pointer:coarse表示所有指针里面，只要有一个指针是不精确的，就符合查询条件。
-
 ### 六、工具包
+
 除了上面这些方法，也可以使用别人写好的工具包。这里推荐 react-device-detect，它支持多种粒度的设备侦测。
 
 ```
@@ -415,3 +414,67 @@ if (isMobile) {
   // 当前设备是移动设备
 }
 ```
+
+## 导出导入文件代码实例
+```
+// ==== 导出相关;
+// get接口导出;
+export const ApiParamExport = (id: number): Promise<Response> =>
+  api.get(`xxx/xxx/xxx/${id}`, {
+    responseType: "blob",
+  });
+// post接口导出; 
+export const ApiMedicineExport = (params: any): Promise<Response> =>
+  api.post("xxx/export", params, { responseType: "blob" });
+
+// 返回文件流后对文件流进行处理下载;
+ApiParamExport(this.questionnaireId).then((res) => {
+  const datetime = moment(new Date().getTime()).format("YYYY-MM-DD");
+  const objUrl = URL.createObjectURL(res);
+  const a = document.createElement("a");
+  a.href = objUrl;
+  a.download = "paramsData_" + datetime + ".xlsx";
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  this.exportLoading = false; // 导出按钮避免重复点击添加loading...
+  this.$message.success("导出成功！");
+});
+
+// ==== 导入相关;
+// post接口导入; 
+export const ApiMedicineImport = (params: any): Promise<Response> =>
+  api.post("xxxx/import", params, {
+    headers: { "Content-Type": "multipart/form-data" },
+  });
+//导入ele示例;
+<el-upload
+  class="upload-demo"
+  action=""
+  :http-request="importMedicineOrder"
+  :on-success="handleSuccess"
+  :file-list="fileList"
+  :show-file-list="false"
+  accept=".xls, .xlsx"
+>
+  <el-button type="primary">导 入</el-button>
+</el-upload>
+// 导入接口调用;
+importMedicineOrder(file: any) {
+  // 导入;
+  const formData = new FormData();
+  formData.append("excel", file.file);
+  ApiMedicineImport(formData).then((res) => {
+    this.fileList = [];
+    this.expressInfoLists = res.data;
+    // 其他业务逻辑处理;
+  });
+}
+
+```
+
+
+
+
+
+
