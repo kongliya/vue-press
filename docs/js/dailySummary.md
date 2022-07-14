@@ -474,8 +474,61 @@ importMedicineOrder(file: any) {
 
 ```
 
+## 作用域提升
+- ES3开始 try/catch结构在catch中具有块级作用域
+- 作用域提升便 移到各自作用域的最顶端；
+```
+var a = 2;
+// 等价于
+var a; // 编译阶段的任务;
+a = 2; // 执行阶段的任务;
+```
+- 函数优先被提升，其次才是变量;
+例如：
+```
+foo();  // 1
+var foo;
+function foo(){
+  console.log(1);
+}
+foo = function() {
+  console.log(2);
+}
+
+// 提升后;
+function foo() {
+  console.log(1);
+} // 因为foo被重复定义 所以后定义的fun覆盖前边的var foo;
+foo(); // 1
+foo = function() {
+  console.log(2);
+}
+```
+- 总结：无论作用域中的声明出现在什么地方，都将在代码被执行前首先进行处理。可以将这个过程理解为所有的声明（函数和变量）都会被“移动”到各自作用域的最顶端，这个过程称为提升。
+
+## 模块 
+- 模块暴露：涵盖模块实例内部作用域的闭包；
+- 模块模式的两个必要条件：  
+ 1. 必须有外部的封闭函数，至少被调用一次，每次调用都会创建一个新的模块实例；
+ 2. 必须返回至少一个内部函数，这样内部函数才能在私有作用域中形成闭包，并且可以访问或者修改私有的状态。
+
+## this
+- this提供了一种更优雅的方式来隐式“传递”一个对象引用，这样可以将API设置的简洁并于易于复用；
 
 
-
-
+## 判断数组包含的对象是否全部都在另一个数组集合中;
+```
+    isIncludeArr(all, someCon) {
+      return someCon.every((item) => {
+        return all.some((sub) => {
+          return sub === item;
+        });
+      });
+    },
+const arr11 = [9, 10, 11, 12, 13, 1, 2, 3, 4, 5]; 
+const arr22 = [9, 10, 11, 12, 13]; 
+const arr33 = [9, 10, 100];
+console.log(isInclude(arr11, arr22));  //true
+console.log(isInclude(arr11, arr33));  //false
+```
 
