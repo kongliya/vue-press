@@ -512,19 +512,60 @@ foo = function() {
  1. 必须有外部的封闭函数，至少被调用一次，每次调用都会创建一个新的模块实例；
  2. 必须返回至少一个内部函数，这样内部函数才能在私有作用域中形成闭包，并且可以访问或者修改私有的状态。
 
-## this
+## 关于this
 - this提供了一种更优雅的方式来隐式“传递”一个对象引用，这样可以将API设置的简洁并于易于复用；
-
+- 调用栈：相当于一个函数调用链 在哪里被调用；
+- 绑定规则：
+  - 默认绑定：独立函数调用 this指向全局对象 或者说 指向window（严格模式下指向undefined）；
+  - 隐式绑定：会将函数调用中的this绑定到这个上下文对象；
+    - 隐式丢失： 被隐式绑定的函数会丢失绑定对象，也就是它应用默认绑定规则，从而把this绑定到全局对象或者undefined上，取决于是否为严格模式。
+    ```
+    // 一个简单的例子;
+    function foo(){
+      console.log(this.a); // 实际上引用了全局对象的a;
+    }
+    var baz = {
+      a : 1,
+      obj: foo
+    }
+    var bar = baz.obj; // 别名 实际上还是指向了foo本身...
+    var a = 'oops'; // 全局对象的属性
+    bar();  // 'oops' 
+    ```
+  - 显式绑定：call、apply方式直接指定this的绑定对象;
+    - 硬绑定：创建一个包裹函数，负责接收参数并返回值；ES5提供了内置方法：Function.prototype.bind;
+    ```
+    function foo(some) {
+      console.log(this.a,some);
+      return this.a + some;
+    }
+    var obj = {
+      a: 2,
+    };
+    var bar = foo.bind(obj);
+    var b = bar(3); // 2 3;
+    console.log(b); // 5;
+    // bind(..)会返回一个硬编码的新函数，它会把你置顶的参数设置为this的上下文并调用原始函数;
+    ```
+    - new绑定：使用new来调用函数，或者说发生构造函数调用时，会自动执行如下操作：
+    1. 创建/构造一个全新的对象；
+    2. 这个新对象会被执行[[prototype]]链接；
+    3. 这个新对象会绑定到函数调用的this；
+    4. 如果函数没有返回其他对象，那么new表达式中的函数调用会自动返回这个新对象。
+  - 优先级：
+  （一个额外的知识：polyfill代码用于对旧浏览器的兼容）
+    显式绑定>隐式绑定 new绑定>硬绑定
 
 ## 判断数组包含的对象是否全部都在另一个数组集合中;
 ```
-    isIncludeArr(all, someCon) {
-      return someCon.every((item) => {
-        return all.some((sub) => {
-          return sub === item;
-        });
-      });
-    },
+isIncludeArr(all, someCon) {
+  return someCon.every((item) => {
+    return all.some((sub) => {
+      return sub === item;
+    });
+  });
+},
+
 const arr11 = [9, 10, 11, 12, 13, 1, 2, 3, 4, 5]; 
 const arr22 = [9, 10, 11, 12, 13]; 
 const arr33 = [9, 10, 100];
@@ -532,3 +573,13 @@ console.log(isInclude(arr11, arr22));  //true
 console.log(isInclude(arr11, arr33));  //false
 ```
 
+## 判断数组中是否至少有一项存在
+```
+isIncludeSomeArr(all, someCon) {
+  return all.some((item) => {
+    return someCon.some((sub) => {
+      return sub === item;
+    });
+  });
+},
+```
