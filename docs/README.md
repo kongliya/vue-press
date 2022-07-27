@@ -6,8 +6,8 @@ actionLink: /other/
 features:
 - title: HTTP
   details: 好记性不如烂笔头。
-- title: Node.js
-  details: 不懂后端的前端不是好开发。
+- title: Vue
+  details: 用于谋生。
 - title: JS
   details: 负责赚钱养家。
 - title: CSS
