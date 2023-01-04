@@ -20,6 +20,7 @@ module.exports = {
           '',
           'vite',
           'vue',
+          'dailySummer'
         ],
         '/nodejs/': [
           '',
