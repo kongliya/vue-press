@@ -154,3 +154,17 @@ const xxx = (value, idx) => {
 </script>
 
 ```
+
+## 10. Vue3 element table使用插槽slot方式：#default="scope"
+```
+<el-table-column fixed="right" width="150" class-name="operate" label="调整展示顺序">
+    <template #default="scope">
+    <el-button v-show="scope.$index != 0" @click="addressUp(scope.row,scope.$index)" type="text" size="small">上移
+    </el-button>
+    <el-button v-show="scope.$index == 0" style="padding-left: 10px" type="text" size="small"> </el-button>
+    <span class="spac_line" v-if="(scope.$index != 0) && (tableData.length != scope.$index + 1)"> | </span>
+    <el-button v-show="tableData.length != scope.$index + 1" type="text"
+        @click="addressDown(scope.row,scope.$index)" size="small">下移</el-button>
+    </template>
+</el-table-column>
+```
