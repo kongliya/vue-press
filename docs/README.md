@@ -14,6 +14,6 @@ features:
   details: 负责貌美如花。
 - title: 其他
   details: 闲来扯扯。
-footer: MIT Licensed | Copyright © 2020-present KongLi
+footer: MIT Licensed | Copyright © 2023-present KongLi
 ---
 

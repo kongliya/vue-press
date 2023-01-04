@@ -48,7 +48,7 @@ push成功后，执行如下：
 npm run docs:build
 ```
 
-重新编译，编译完成后生成dist文件夹，进入
+<!-- 重新编译，编译完成后生成dist文件夹，进入 xxx不对的 不能进入.. 实践出真知啊！！！ -->
 ```
 npm run deploy
 ```

@@ -1,6 +1,6 @@
 module.exports = {
-    title: 'One Person.',
-    description: 'One Person.',
+    title: '孔孔.',
+    description: '孔孔\'s blog.',
     head: [
         ['link', { rel: 'icon', href: '/favicon.ico' }],
     ],
